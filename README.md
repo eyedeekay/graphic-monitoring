@@ -3,6 +3,8 @@ I2PControl for Lua and Conky-Lua
 
 Make sure to check out all the submodules, see: lua/README.md
 
+![screenshot](screenshot.png)
+
 ```sh
 # from this directory(a checkout)
 conky -c _dot_conkyrc
