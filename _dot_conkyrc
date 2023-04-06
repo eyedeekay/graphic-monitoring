@@ -21,8 +21,8 @@ draw_shades no
 draw_outline no
 draw_borders no
 draw_graph_borders yes
-alignment bottom_left
-gap_x 12
+alignment bottom_right
+gap_x 632
 gap_y 48
 no_buffers yes
 uppercase no
