@@ -54,9 +54,9 @@ ${color dark blue} ${lua_graph exploratoryBuildSuccess red green 5000 -t}
 ${color blue} Exploratory Build Success Percent: $alignr ${lua exploratoryBuildSuccessPercentage}
 ${color dark blue} ${lua_graph exploratoryBuildSuccessPercentage red green 100 -t}
 ${color blue} Exploratory Build Expire: $alignr ${lua getrate tunnel.buildExploratoryExpire 600000}
-${color dark blue} ${lua_graph exploratoryBuildExpire orange green 5000 -t}
+${color dark blue} ${lua_graph exploratoryBuildExpire orange green 5000 -t -l}
 ${color blue} Exploratory Build Expire Percent: $alignr ${lua exploratoryBuildExpirePercentage}
-${color dark blue} ${lua_graph exploratoryBuildExpirePercentage orange green 100 -t}
+${color dark blue} ${lua_graph exploratoryBuildExpirePercentage orange green 100 -t -l}
 ${color blue} Exploratory Build Rejection: $alignr ${lua getrate tunnel.buildExploratoryReject 600000}
 ${color dark blue} ${lua_graph exploratoryBuildReject green red 5000 -t}
 ${color blue} Exploratory Build Rejection Percent: $alignr ${lua exploratoryBuildRejectPercentage}
