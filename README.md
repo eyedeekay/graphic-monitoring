@@ -17,8 +17,10 @@ cp -rv lua/* $HOME/lua/
 cp -v _dot_conkyrc $HOME/.conkyrc
 ```
 
-
 ```sh
 # usage with i2pd
-I2P_CONTROL="http://127.0.0.1:7650" conky -c _dot_conkyrc
+export I2P_CONTROL="http://127.0.0.1:7650"
+conky -c _dot_conkyrc
 ```
+
+![screenshot-2.png](screenshot-2.png)
