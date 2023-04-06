@@ -100,19 +100,19 @@ end
 function conky_exploratoryBuildSuccessPercentage()
     success = conky_getrate_number("tunnel.buildExploratorySuccess", 600000)
     total = exploratoryTotal()
-    return success / total
+    return (success / total) * 100
 end
 
 function conky_exploratoryBuildRejectPercentage()
     reject = conky_getrate_number("tunnel.buildExploratoryReject", 600000)
     total = exploratoryTotal()
-    return reject / total
+    return (reject / total) * 100
 end
 
 function conky_exploratoryBuildExpirePercentage()
     expire = conky_getrate_number("tunnel.buildExploratoryExpire", 600000)
     total = exploratoryTotal()
-    return expire / total
+    return (expire / total) * 100
 end
 
 function conky_routerinfo(info)
