@@ -43,8 +43,8 @@ function conky_getrate(stat, period)
     if type(period) == "string" then
         period = tonumber(period)
     end
-    if period < 300000 then
-        period = 300000
+    if period < 60000 then
+        period = 60000
     end
     result, error = call("GetRate", {Stat = stat, Period = period})
     if error ~= nil then
@@ -61,23 +61,23 @@ function conky_getrate_number(stat, period)
 end
 
 function conky_sendBps()
-    return conky_getrate_number("bw.sendBps", 100000)
+    return conky_getrate_number("bw.sendBps", 300000)
 end
 
 function conky_receiveBps()
-    return conky_getrate_number("bw.receiveBps", 100000)
+    return conky_getrate_number("bw.receiveBps", 300000)
 end
 
 function conky_exploratoryBuildExpire()
-    return conky_getrate_number("tunnel.buildExploratoryExpire", 100000)
+    return conky_getrate_number("tunnel.buildExploratoryExpire", 600000)
 end
 
 function conky_exploratoryBuildReject()
-    return conky_getrate_number("tunnel.buildExploratoryReject", 100000)
+    return conky_getrate_number("tunnel.buildExploratoryReject", 600000)
 end
 
 function conky_exploratoryBuildSuccess()
-    return conky_getrate_number("tunnel.buildExploratorySuccess", 100000)
+    return conky_getrate_number("tunnel.buildExploratorySuccess", 600000)
 end
 
 function conky_routerinfo(info)
