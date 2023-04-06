@@ -43,7 +43,7 @@ ${lua routerinfo}
 
 i2p: $alignr ${color orange} ${lua networksettings}
 ${color blue} receiveBps: $alignr ${lua getrate bw.receiveBps 100000} kb/s
-${color dark blue} ${lua_graph receiveBps}
+${color dark blue} ${lua_graph receiveBps blue red 1000 -t}
 ${color blue} Outbound: $alignr ${lua getrate bw.sendBps 100000} kb/s
-${color dark blue} ${lua_graph sendBps}
+${color dark blue} ${lua_graph sendBps blue red 1000 -t}
 

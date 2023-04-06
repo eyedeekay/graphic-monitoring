@@ -123,10 +123,3 @@ function stringifyTable(table)
     end
     return result
 end
-
-result = conky_getrate("bw.receiveBps", 100000)
-print(result)
-result = conky_routerinfo()
-print(result)
-result = conky_networksettings()
-print(result)
