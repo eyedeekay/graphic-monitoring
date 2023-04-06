@@ -1,0 +1,132 @@
+package.path = './lua/craigmj/json4lua/json/?.lua;' .. package.path
+json = require('json')
+require("rpc")
+function findserver()
+    i2pcontrol = os.getenv("I2P_CONTROL")
+    if i2pcontrol == nil then
+        return "http://127.0.0.1:7657/jsonrpc/"
+    end
+    print(i2pcontrol)
+    return i2pcontrol
+end
+server = findserver()
+function auth()
+    result, error = json.rpc.call(server,'Authenticate', {API = 1, Password = 'itoopie'})
+    if error ~= nil then
+        print("auth error")
+        return error
+    end
+    return result
+end
+
+function call(method, params)
+    authResult = auth()
+    params.Token = authResult.Token
+    if authResult ~= nil then
+        return json.rpc.call(server,method, params)
+    end
+end
+
+function echo(msg)
+    result, error = call("Echo", {Echo = msg})
+    if error ~= nil then
+        print("echo error")
+        return error
+    end
+    return result.Result 
+end
+
+function conky_getrate(stat, period)
+    if period == nil then
+        period = 300000
+    end
+    if type(period) == "string" then
+        period = tonumber(period)
+    end
+    if period < 300000 then
+        period = 300000
+    end
+    result, error = call("GetRate", {Stat = stat, Period = period})
+    if error ~= nil then
+        print("getrate error")
+        return error
+    end
+    return result.Result
+end
+
+function conky_getrate_number(stat, period)
+    val = conky_getrate(stat, period)
+    print(stringifyTable(val))
+    return tonumber(val)
+end
+
+function conky_sendBps()
+    return conky_getrate_number("bw.sendBps", 100000)
+end
+
+function conky_receiveBps()
+    return conky_getrate_number("bw.receiveBps", 100000)
+end
+
+function conky_routerinfo(info)
+    params = {}
+    if info ~= nil then
+        params[info] = ""
+    else
+        params["i2p.router.status"] = ""
+        params["i2p.router.uptime"] = ""
+        params["i2p.router.version"] = ""
+        params["i2p.router.net.bw.inbound.1s"] = ""
+        params["i2p.router.net.bw.inbound.15s"] = ""
+        params["i2p.router.net.bw.outbound.1s"] = ""
+        params["i2p.router.net.bw.outbound.15s"] = ""
+        params["i2p.router.net.status"] = ""
+        params["i2p.router.net.tunnels.participating"] = ""
+        params["i2p.router.netdb.activepeers"] = ""
+        params["i2p.router.netdb.fastpeers"] = ""
+        params["i2p.router.netdb.highcapacitypeers"] = ""
+        params["i2p.router.netdb.isreseeding"] = ""
+        params["i2p.router.netdb.knownpeers"] = ""
+    end
+    result, error = call("RouterInfo", params)
+    if error ~= nil then
+        print("routerinfo error")
+        return error
+    end
+    return stringifyTable(result)
+end
+
+function conky_networksettings(info)
+    params = {}
+    if info == nil then
+        info = "i2p.router.net.ssu.detectedip"
+    end
+    if info ~= nil then
+        params[info] = ""
+    else
+        params[info] = ""
+    end
+    result, error = call("NetworkSetting", params)
+    if error ~= nil then
+        print("networksettings error")
+        return error
+    end
+    return result[info]
+end
+
+function stringifyTable(table)
+    result = ""
+    if type(table) == "table" then
+        for k, v in pairs(table) do
+            result = string.format("%s%s = %s\n", result, k, v)
+        end
+    end
+    return result
+end
+
+result = conky_getrate("bw.receiveBps", 100000)
+print(result)
+result = conky_routerinfo()
+print(result)
+result = conky_networksettings()
+print(result)

@@ -1,0 +1,49 @@
+lua_load lua/i2pcontrol.lua
+
+use_xft yes
+xftfont HandelGotD:size=9
+xftalpha 0.5
+update_interval 5.0
+total_run_times 0
+own_window yes
+own_window_class Conky
+own_window_transparent yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar
+own_window_argb_visual yes
+own_window_argb_value 0
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 600
+maximum_width 600
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+alignment bottom_left
+gap_x 12
+gap_y 48
+no_buffers yes
+uppercase no
+cpu_avg_samples 4
+override_utf8_locale no
+text_buffer_size 1024
+
+TEXT
+
+${color white}
+$sysname $kernel on $machine ${color grey}
+Uptime: $alignr ${color green} $uptime ${color grey}
+${color magenta}Hostname $alignr $nodename ${color blue}
+
+${color green}
+I2P Router Information:
+${lua routerinfo}
+
+i2p: $alignr ${color orange} ${lua networksettings}
+${color blue} receiveBps: $alignr ${lua getrate bw.receiveBps 100000} kb/s
+${color dark blue} ${lua_graph receiveBps}
+${color blue} Outbound: $alignr ${lua getrate bw.sendBps 100000} kb/s
+${color dark blue} ${lua_graph sendBps}
+
