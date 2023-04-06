@@ -47,3 +47,10 @@ ${color dark blue} ${lua_graph receiveBps blue red 1000 -t}
 ${color blue} Outbound: $alignr ${lua getrate bw.sendBps 100000} kb/s
 ${color dark blue} ${lua_graph sendBps blue red 1000 -t}
 
+i2p: $alignr ${color orange} ${lua networksettings}
+${color blue} Exploratory Build Success: $alignr ${lua getrate tunnel.buildExploratorySuccess 100000}
+${color dark blue} ${lua_graph exploratoryBuildSuccess green red 1000 -t}
+${color blue} Exploratory Build Expire: $alignr ${lua getrate tunnel.buildExploratoryExpire 100000}
+${color dark blue} ${lua_graph exploratoryBuildExpire orange green 1000 -t}
+${color blue} Exploratory Build Rejection: $alignr ${lua getrate tunnel.buildExploratoryReject 100000}
+${color dark blue} ${lua_graph exploratoryBuildReject red green 1000 -t}

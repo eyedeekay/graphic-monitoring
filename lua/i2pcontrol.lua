@@ -68,6 +68,18 @@ function conky_receiveBps()
     return conky_getrate_number("bw.receiveBps", 100000)
 end
 
+function conky_exploratoryBuildExpire()
+    return conky_getrate_number("tunnel.buildExploratoryExpire", 100000)
+end
+
+function conky_exploratoryBuildReject()
+    return conky_getrate_number("tunnel.buildExploratoryReject", 100000)
+end
+
+function conky_exploratoryBuildSuccess()
+    return conky_getrate_number("tunnel.buildExploratorySuccess", 100000)
+end
+
 function conky_routerinfo(info)
     params = {}
     if info ~= nil then
