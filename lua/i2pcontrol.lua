@@ -6,7 +6,6 @@ function findserver()
     if i2pcontrol == nil then
         return "http://127.0.0.1:7657/jsonrpc/"
     end
-    print(i2pcontrol)
     return i2pcontrol
 end
 server = findserver()

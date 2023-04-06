@@ -15,5 +15,10 @@ conky -c _dot_conkyrc
 mkdir -p $HOME/lua
 cp -rv lua/* $HOME/lua/
 cp -v _dot_conkyrc $HOME/.conkyrc
-conky -c _dot_conkyrc
+```
+
+
+```sh
+# usage with i2pd
+I2P_CONTROL="http://127.0.0.1:7650" conky -c _dot_conkyrc
 ```
