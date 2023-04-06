@@ -1,0 +1,4 @@
+[submodule "lua/craigmj/json4lua"]
+    path = lua/craigmj/json4lua
+    url = https://github.com/craigmj/json4lua
+    branch = master
