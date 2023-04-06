@@ -3,7 +3,7 @@ I2PControl for Lua and Conky-Lua
 
 Make sure to check out all the submodules, see: lua/README.md
 
-![screenshot](screenshot.png)
+![screenshot.png](screenshot.png)
 
 ```sh
 # from this directory(a checkout)
