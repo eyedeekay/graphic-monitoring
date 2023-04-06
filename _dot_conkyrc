@@ -42,13 +42,12 @@ ${color green}
 I2P Router Information:
 ${lua routerinfo}
 
-i2p: $alignr ${color orange} ${lua networksettings}
+I2P: $alignr ${color orange} ${lua networksettings}
 ${color blue} receiveBps: $alignr ${lua getrate bw.receiveBps 300000} kb/s
 ${color dark blue} ${lua_graph receiveBps purple blue 5000 -t}
 ${color blue} sendBps: $alignr ${lua getrate bw.sendBps 300000} kb/s
 ${color dark blue} ${lua_graph sendBps blue purple 5000 -t}
 
-i2p: $alignr ${color orange} ${lua networksettings}
 ${color blue} Exploratory Build Success: $alignr ${lua getrate tunnel.buildExploratorySuccess 600000}
 ${color dark blue} ${lua_graph exploratoryBuildSuccess red green 5000 -t}
 ${color blue} Exploratory Build Success Percent: $alignr ${lua exploratoryBuildSuccessPercentage}
