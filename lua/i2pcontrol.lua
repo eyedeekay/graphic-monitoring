@@ -80,6 +80,41 @@ function conky_exploratoryBuildSuccess()
     return conky_getrate_number("tunnel.buildExploratorySuccess", 600000)
 end
 
+function exploratoryTotal()
+    success = conky_getrate_number("tunnel.buildExploratorySuccess", 600000)
+    if type(success) ~= "number" then
+        success = 0
+    end
+    reject = conky_getrate_number("tunnel.buildExploratoryReject", 600000)
+    if type(reject) ~= "number" then
+        success = 0
+    end
+    expire = conky_getrate_number("tunnel.buildExploratoryExpire", 600000)
+    if type(expire) ~= "number" then
+        success = 0
+    end
+    total = success + reject + expire
+    return total
+end
+
+function conky_exploratoryBuildSuccessPercentage()
+    success = conky_getrate_number("tunnel.buildExploratorySuccess", 600000)
+    total = exploratoryTotal()
+    return success / total
+end
+
+function conky_exploratoryBuildRejectPercentage()
+    reject = conky_getrate_number("tunnel.buildExploratoryReject", 600000)
+    total = exploratoryTotal()
+    return reject / total
+end
+
+function conky_exploratoryBuildExpirePercentage()
+    expire = conky_getrate_number("tunnel.buildExploratoryExpire", 600000)
+    total = exploratoryTotal()
+    return expire / total
+end
+
 function conky_routerinfo(info)
     params = {}
     if info ~= nil then

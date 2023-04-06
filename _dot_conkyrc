@@ -4,7 +4,7 @@ background yes
 use_xft yes
 xftfont HandelGotD:size=9
 xftalpha 0.5
-update_interval 5.0
+update_interval 10.0
 total_run_times 0
 own_window yes
 own_window_class Conky
@@ -43,15 +43,21 @@ I2P Router Information:
 ${lua routerinfo}
 
 i2p: $alignr ${color orange} ${lua networksettings}
-${color blue} receiveBps: $alignr ${lua getrate bw.receiveBps 100000} kb/s
+${color blue} receiveBps: $alignr ${lua getrate bw.receiveBps 300000} kb/s
 ${color dark blue} ${lua_graph receiveBps purple blue 5000 -t}
-${color blue} Outbound: $alignr ${lua getrate bw.sendBps 100000} kb/s
+${color blue} sendBps: $alignr ${lua getrate bw.sendBps 300000} kb/s
 ${color dark blue} ${lua_graph sendBps blue purple 5000 -t}
 
 i2p: $alignr ${color orange} ${lua networksettings}
 ${color blue} Exploratory Build Success: $alignr ${lua getrate tunnel.buildExploratorySuccess 600000}
 ${color dark blue} ${lua_graph exploratoryBuildSuccess red green 5000 -t}
+${color blue} Exploratory Build Success Percent: $alignr ${lua exploratoryBuildSuccessPercentage}
+${color dark blue} ${lua_graph exploratoryBuildSuccessPercentage red green 100 -t}
 ${color blue} Exploratory Build Expire: $alignr ${lua getrate tunnel.buildExploratoryExpire 600000}
 ${color dark blue} ${lua_graph exploratoryBuildExpire orange green 5000 -t}
+${color blue} Exploratory Build Expire Percent: $alignr ${lua exploratoryBuildExpirePercentage}
+${color dark blue} ${lua_graph exploratoryBuildExpirePercentage orange green 100 -t}
 ${color blue} Exploratory Build Rejection: $alignr ${lua getrate tunnel.buildExploratoryReject 600000}
 ${color dark blue} ${lua_graph exploratoryBuildReject green red 5000 -t}
+${color blue} Exploratory Build Rejection Percent: $alignr ${lua exploratoryBuildRejectPercentage}
+${color dark blue} ${lua_graph exploratoryBuildRejectPercentage green red 100 -t}
