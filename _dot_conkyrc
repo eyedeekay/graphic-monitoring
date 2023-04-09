@@ -1,6 +1,6 @@
 lua_load lua/i2pcontrol.lua
 
-background yes
+background no
 use_xft yes
 xftfont HandelGotD:size=9
 xftalpha 0.5
