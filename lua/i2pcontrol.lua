@@ -42,8 +42,8 @@ function conky_getrate(stat, period)
     if type(period) == "string" then
         period = tonumber(period)
     end
-    if period < 600000 then
-        period = 600000
+    if period < 60000 then
+        period = 60000
     end
     result, error = call("GetRate", {Stat = stat, Period = period})
     if error ~= nil then
@@ -90,11 +90,11 @@ function exploratoryTotal()
     end
     reject = conky_getrate_number("tunnel.buildExploratoryReject", 600000)
     if type(reject) ~= "number" then
-        reject = 1
+        success = 1
     end
     expire = conky_getrate_number("tunnel.buildExploratoryExpire", 600000)
     if type(expire) ~= "number" then
-        expire = 1
+        success = 1
     end
     total = success + reject + expire
     return total
