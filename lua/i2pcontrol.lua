@@ -42,8 +42,8 @@ function conky_getrate(stat, period)
     if type(period) == "string" then
         period = tonumber(period)
     end
-    if period < 60000 then
-        period = 60000
+    if period < 600000 then
+        period = 600000
     end
     result, error = call("GetRate", {Stat = stat, Period = period})
     if error ~= nil then
@@ -56,7 +56,11 @@ end
 function conky_getrate_number(stat, period)
     val = conky_getrate(stat, period)
     print(stringifyTable(val))
-    return tonumber(val)
+    num = tonumber(val)
+    if num == 0 then
+        return 1
+    end
+    return num
 end
 
 function conky_sendBps()
@@ -82,15 +86,15 @@ end
 function exploratoryTotal()
     success = conky_getrate_number("tunnel.buildExploratorySuccess", 600000)
     if type(success) ~= "number" then
-        success = 0
+        success = 1
     end
     reject = conky_getrate_number("tunnel.buildExploratoryReject", 600000)
     if type(reject) ~= "number" then
-        success = 0
+        reject = 1
     end
     expire = conky_getrate_number("tunnel.buildExploratoryExpire", 600000)
     if type(expire) ~= "number" then
-        success = 0
+        expire = 1
     end
     total = success + reject + expire
     return total
