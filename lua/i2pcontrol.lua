@@ -8,9 +8,8 @@ function findserver()
     end
     return i2pcontrol
 end
-server = findserver()
 function auth()
-    result, error = json.rpc.call(server,'Authenticate', {API = 1, Password = 'itoopie'})
+    result, error = json.rpc.call(findserver(),'Authenticate', {API = 1, Password = 'itoopie'})
     if error ~= nil then
         print("auth error")
         return error
@@ -22,7 +21,7 @@ function call(method, params)
     authResult = auth()
     params.Token = authResult.Token
     if authResult ~= nil then
-        return json.rpc.call(server,method, params)
+        return json.rpc.call(findserver(), method, params)
     end
 end
 
