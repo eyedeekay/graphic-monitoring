@@ -9,8 +9,16 @@ function findserver()
     print("Using I2P Control API at " .. i2pcontrol)
     return i2pcontrol
 end
+function findpassword()
+    i2pcontrol_password = os.getenv("I2P_CONTROL_PASSWORD")
+    if i2pcontrol == nil then
+        return "itoopie"
+    end
+    return i2pcontrol_password
+end
+
 function auth()
-    result, error = json.rpc.call(findserver(),'Authenticate', {API = 1, Password = 'itoopie'})
+    result, error = json.rpc.call(findserver(),'Authenticate', {API = 1, Password = findpassword()})
     if error ~= nil then
         print("auth error")
         return error
