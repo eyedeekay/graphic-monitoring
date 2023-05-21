@@ -1,10 +1,10 @@
 lua_load lua/myi2pcontrol.lua
-
 background no
 use_xft yes
-xftfont HandelGotD:size=7
+xftfont Sans Semibold :size=7
+#xftfont Carlito:size=8
 xftalpha 0.5
-update_interval 10.0
+update_interval 40
 total_run_times 0
 own_window yes
 own_window_class Conky
@@ -23,30 +23,41 @@ draw_outline no
 draw_borders no
 draw_graph_borders no
 #show_graph_range yes
-#show_graph_scale yes
+show_graph_scale yes
 alignment top_right
-gap_x 10
-gap_y 400
+gap_x 5
+gap_y 5
 no_buffers yes
 uppercase no
 cpu_avg_samples 4
 override_utf8_locale no
 text_buffer_size 1024
+#out_to_http yes
+#http_port 9080
+#http_refresh yes
 TEXT
-${color white}${font HandelGotD:bold:size=8}${alignc}Remote System (I2P+) ${font}
-${image color_cannon.png -s 40x40 -p 260,35} 
+#${freq}
+${cpugraph green red -t}
+#${diskiograph green red -t}
+#${cpubar}
+${font HandelGotD:bold:size=10}${alignc}Local System (Canon I2P)${font}
+${image itoopie.png -s 40x40 -p 260,65}
+#${color yellow} BW in limit ${lua bwin}
 ${color white}${lua routerinfo}
-${color yellow} Receive: $alignr ${lua rxkb}
-#${alignr}Scale 10000 KB/s
-${color green} ${lua_graph receiveBps #A73B00 #F92C00 100000 -t}
-#
-${color yellow} Send: $alignr ${lua txkb}
-#${alignr}Scale 50000 KB/s
- ${color green} ${lua_graph sendBps #F92C00 #A73B00 500000 -t}
-#
-${color yellow} Combined Build Success Percent: $alignr ${lua ComboBSP}% 
-${color green} ${lua_graph ComboBuildSuccessPercentage red green 100 -t}
-${color yellow} Exploratory Build Success Percent: $alignr ${lua EBSP}%
-${color green} ${lua_graph exploratoryBuildSuccessPercentage red green 100 -t}
-${color yellow} Client Build Success Percent: $alignr ${lua ClientBSP}%
-${color green} ${lua_graph clientBuildSuccessPercentage red green 100 -t} 
+#${lua networksettings}
+${color yellow}Receive: $alignr ${lua rxkb}
+#${color yellow}RX ${lua_graph receiveBps 20,215 #A73B00 #F92C00 600000 -t} ${alignr}${lua rxkb}
+${color yellow}${lua_graph receiveBps yellow red 800000 -t}
+#${color green} ${lua_graph receiveBps #A73B00 #F92C00 -t -l}
+${color yellow}Send: $alignr ${lua txkb}
+#${color yellow}TX ${lua_graph sendBps 20,215 #F92C00 #A73B00 600000 -t} ${alignr}${lua txkb}
+${color yellow}${lua_graph sendBps yellow red 800000 -t}
+#${color green} ${lua_graph sendBps #F92C00 #A73B00 -t -l}
+${color yellow} Combined Build Success Percent: ${alignr} ${lua ComboBSP}% 
+#${color yellow} ${lua_graph ComboBuildSuccessPercentage 20,270 red green 100 -t}${alignr}${lua ComboBSP}%
+${color yellow} ${lua_graph ComboBuildSuccessPercentage red green 100 -t}
+${color yellow} Exploratory Build Success Percent: $alignr ${lua EBSP}% 
+${color green} ${lua_graph exploratoryBuildSuccessPercentage 5,300 red green 100 -t}
+${color yellow} Client Build Success Percent: $alignr ${lua ClientBSP}% 
+${color green} ${lua_graph clientBuildSuccessPercentage 5,300 red green 100 -t}
+# ${tail /usr/home/eraser/.i2p/logs/* 3} #doesn't work with mult files

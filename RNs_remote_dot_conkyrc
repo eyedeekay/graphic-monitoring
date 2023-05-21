@@ -1,0 +1,52 @@
+lua_load lua/myi2pcontrol.lua
+
+background no
+use_xft yes
+xftfont HandelGotD:size=7
+xftalpha 0.5
+update_interval 10.0
+total_run_times 0
+own_window yes
+own_window_class Conky
+own_window_transparent yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar
+own_window_argb_visual yes
+own_window_argb_value 0
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 300
+maximum_width 300
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders no
+#show_graph_range yes
+#show_graph_scale yes
+alignment top_right
+gap_x 10
+gap_y 400
+no_buffers yes
+uppercase no
+cpu_avg_samples 4
+override_utf8_locale no
+text_buffer_size 1024
+TEXT
+${color white}${font HandelGotD:bold:size=8}${alignc}Remote System (I2P+) ${font}
+${image color_cannon.png -s 40x40 -p 260,35} 
+${color white}${lua routerinfo}
+${color yellow} Receive: $alignr ${lua rxkb}
+#${alignr}Scale 10000 KB/s
+${color green} ${lua_graph receiveBps #A73B00 #F92C00 100000 -t}
+#
+${color yellow} Send: $alignr ${lua txkb}
+#${alignr}Scale 50000 KB/s
+ ${color green} ${lua_graph sendBps #F92C00 #A73B00 500000 -t}
+#
+${color yellow} Combined Build Success Percent: $alignr ${lua ComboBSP}% 
+${color green} ${lua_graph ComboBuildSuccessPercentage red green 100 -t}
+${color yellow} Exploratory Build Success Percent: $alignr ${lua EBSP}%
+${color green} ${lua_graph exploratoryBuildSuccessPercentage red green 100 -t}
+${color yellow} Client Build Success Percent: $alignr ${lua ClientBSP}%
+${color green} ${lua_graph clientBuildSuccessPercentage red green 100 -t} 
