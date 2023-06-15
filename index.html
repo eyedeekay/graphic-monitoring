@@ -33,6 +33,11 @@
               </a>
             </li>
             <li>
+              <a href="graphic-monitoring/index.html">
+                graphic-monitoring/index.html
+              </a>
+            </li>
+            <li>
               <a href="index.html">
                 index.html
               </a>
@@ -52,11 +57,71 @@
       I2PControl for Lua and Conky-Lua
     </h1>
     <p>
-      Make sure to check out all the submodules, see: lua/README.md
+      <strong>
+        Usage:
+      </strong>
     </p>
+    <p>
+      First, enable i2pcontrol on your I2P router by going to
+      <a href="http://127.0.0.1:7657/configwebapps">
+        Web App Configuration
+      </a>
+      and starting the
+      <code>
+        jsonrpc
+      </code>
+      app.
+      The
+      <code>
+        i2pcontrol.lua
+      </code>
+      expects the password to be
+      <code>
+        itoopie
+      </code>
+      , which is the default. You can change the password by setting the
+      <code>
+        I2P_CONTROL_PASSWORD
+      </code>
+      variable in your shell.
+      Once you have done so, execute the following commands to test them:
+    </p>
+    <p>
+      <strong>
+        You will need:
+      </strong>
+    </p>
+    <p>
+      <code>
+        conky-lua
+      </code>
+      ,
+      <code>
+        lua5.1
+      </code>
+      and
+      <code>
+        lua-socket
+      </code>
+      . You will need
+      <code>
+        lua-sec
+      </code>
+      for use with i2pd.
+      On Ubuntu or Debian, just:
+    </p>
+    <pre><code class="language-sh">sudo apt-get install conky-all lua5.1 lua-socket lua-sec
+</code></pre>
+    <pre><code class="language-sh">git clone --recursive https://github.com/eyedeekay/graphic-monitoring
+cd graphic-monitoring
+conky -c _dot_conkyrc
+</code></pre>
     <p>
       <img src="screenshot.png" alt="screenshot.png" />
     </p>
+    <h2>
+      Other ways of setting it up:
+    </h2>
     <pre><code class="language-sh"># from this directory(a checkout)
 conky -c _dot_conkyrc
 </code></pre>
