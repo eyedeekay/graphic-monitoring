@@ -1,0 +1,62 @@
+lua_load lua/i2pcontrol.lua
+
+background no
+use_xft yes
+xftfont HandelGotD:size=9
+xftalpha 0.5
+update_interval 10.0
+total_run_times 0
+own_window yes
+own_window_class Conky
+own_window_transparent yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar
+own_window_argb_visual yes
+own_window_argb_value 0
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 600
+maximum_width 600
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+alignment bottom_right
+gap_x 1232
+gap_y 48
+no_buffers yes
+uppercase no
+cpu_avg_samples 4
+override_utf8_locale no
+text_buffer_size 1024
+
+TEXT
+
+${color white}
+$sysname $kernel on $machine ${color grey}
+Uptime: $alignr ${color green} $uptime ${color grey}
+${color magenta}Hostname $alignr $nodename ${color blue}
+
+${color green}
+I2P Router Information:
+${lua routerinfo}
+
+I2P: $alignr ${color orange} ${lua networksettings}
+${color blue} receiveBps: $alignr ${lua getrate bw.receiveBps 300000} kb/s
+${color dark blue} ${lua_graph receiveBps purple blue 5000 -t}
+${color blue} sendBps: $alignr ${lua getrate bw.sendBps 300000} kb/s
+${color dark blue} ${lua_graph sendBps blue purple 5000 -t}
+
+${color blue} Exploratory Build Success: $alignr ${lua getrate tunnel.buildExploratorySuccess 600000}
+${color dark blue} ${lua_graph exploratoryBuildSuccess red green 5000 -t}
+${color blue} Exploratory Build Success Percent: $alignr ${lua exploratoryBuildSuccessPercentage}
+${color dark blue} ${lua_graph exploratoryBuildSuccessPercentage red green 100 -t}
+${color blue} Exploratory Build Expire: $alignr ${lua getrate tunnel.buildExploratoryExpire 600000}
+${color dark blue} ${lua_graph exploratoryBuildExpire orange green 5000 -t -l}
+${color blue} Exploratory Build Expire Percent: $alignr ${lua exploratoryBuildExpirePercentage}
+${color dark blue} ${lua_graph exploratoryBuildExpirePercentage orange green 100 -t -l}
+${color blue} Exploratory Build Rejection: $alignr ${lua getrate tunnel.buildExploratoryReject 600000}
+${color dark blue} ${lua_graph exploratoryBuildReject green red 5000 -t}
+${color blue} Exploratory Build Rejection Percent: $alignr ${lua exploratoryBuildRejectPercentage}
+${color dark blue} ${lua_graph exploratoryBuildRejectPercentage green red 100 -t}
