@@ -1,0 +1,32 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - 'v*'
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
+              with:
+                  submodules: recursive
+
+            - name: Build releases
+              run: |
+                make zip
+                make tar
+
+            - name: Create Release
+              id: create_release
+              uses: softprops/action-gh-release@v1
+              with:
+                files: |
+                    *.zip
+                    *.tar.gz
+                draft: false
+                prerelease: false
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
