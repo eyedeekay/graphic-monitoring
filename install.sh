@@ -17,7 +17,7 @@ mkdir -p ~/.local/share/conky/lua/json4lua/json
 # Install lua dependencies if not already present
 if ! command -v luarocks >/dev/null 2>&1; then
     echo "Installing luarocks..."
-    sudo apt-get install -y luarocks
+    sudo apt-get install -y luarocks lua-socket lua-sec
 fi
 
 # Install json4lua using luarocks
