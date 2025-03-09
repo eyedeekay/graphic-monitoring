@@ -1,6 +1,8 @@
 #!/bin/bash
 # filepath: /home/idk/go/src/i2pgit.org/idk/graphic-monitoring/install.sh
 
+CONKY_CONF_DIR="$HOME/.config/conky"
+
 # Check if conky is installed
 if ! command -v conky >/dev/null 2>&1; then
     echo "Conky is not installed. Please install it first."
@@ -9,7 +11,7 @@ if ! command -v conky >/dev/null 2>&1; then
 fi
 
 # Create required directories
-mkdir -p ~/.config/conky
+mkdir -p "$CONKY_CONF_DIR"
 mkdir -p ~/.local/share/conky/lua/json4lua/json
 
 # Install lua dependencies if not already present
@@ -22,7 +24,7 @@ fi
 sudo luarocks install json4lua
 
 # Copy configuration files
-cp _dot_conkyrc ~/.config/conky/config
+cp _dot_conkyrc "$CONKY_CONF_DIR"/config
 cp -r lua/* ~/.local/share/conky/lua/
 
 # Create startup script
@@ -30,7 +32,7 @@ cat > ~/.config/autostart/conky-i2p.desktop << EOF
 [Desktop Entry]
 Type=Application
 Name=Conky
-Exec=conky -c ~/.config/conky/config
+Exec=conky -c "$CONKY_CONF_DIR"/config
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true
@@ -40,5 +42,5 @@ EOF
 chmod +x ~/.config/autostart/conky.desktop
 
 echo "Installation complete! You can start conky by running:"
-echo "conky -c ~/.config/conky/config"
+echo "conky -c "$CONKY_CONF_DIR"/config"
 echo "Or logout and login again for autostart to take effect."
