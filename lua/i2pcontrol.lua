@@ -1,5 +1,21 @@
 --[[
     i2pcontrol.lua
+    
+    Lua interface for I2P Control API that provides functions to monitor and control an I2P router.
+    Includes functionality for:
+    - Authentication and API communication
+    - Bandwidth monitoring (send/receive rates)
+    - Exploratory tunnel statistics
+    - Router information queries
+    - Network settings management
+
+    Dependencies:
+    - json4lua (for JSON-RPC communication)
+    - rpc module
+
+    Environment variables:
+    - I2P_CONTROL: API endpoint URL (default: http://127.0.0.1:7657/jsonrpc/)
+    - I2P_CONTROL_PASSWORD: API authentication password (default: "itoopie")
 ]]--
 package.path = './lua/craigmj/json4lua/json/?.lua;' .. package.path
 json = require('json')
